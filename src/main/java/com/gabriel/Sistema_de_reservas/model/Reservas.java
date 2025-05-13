@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Reservas {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
