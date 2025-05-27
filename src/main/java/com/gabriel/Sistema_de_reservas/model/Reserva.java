@@ -15,16 +15,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Reservas {
+public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="usuario_id")
     private Usuario usuario;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="mesa_id")
     private Mesa mesa;
 

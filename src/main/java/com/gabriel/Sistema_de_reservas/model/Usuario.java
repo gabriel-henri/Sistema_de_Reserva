@@ -1,5 +1,6 @@
 package com.gabriel.Sistema_de_reservas.model;
 
+import com.gabriel.Sistema_de_reservas.model.DTO.UsuarioCreateDto;
 import com.gabriel.Sistema_de_reservas.model.Enums.Roles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,4 +23,11 @@ public class Usuario {
     private String email;
     private String senha;
     private Roles role;
+
+    public Usuario(UsuarioCreateDto usuarioDto){
+        this.setNome(usuarioDto.nome());
+        this.setEmail(usuarioDto.email());
+        this.setSenha(usuarioDto.senha());
+        this.setRole(usuarioDto.role());
+    }
 }
