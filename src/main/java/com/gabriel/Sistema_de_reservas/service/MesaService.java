@@ -36,4 +36,11 @@ public class MesaService {
             throw new Exception("Mesa não encontrada");
         }
     }
+
+    public void deletarMesa(Long id) throws Exception{
+        Mesa mesa = mesaRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Mesa não encontrada")
+        );
+        mesaRepository.delete(mesa);
+    }
 }
