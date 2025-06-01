@@ -1,12 +1,13 @@
 package com.gabriel.Sistema_de_reservas.controller;
 
+import com.gabriel.Sistema_de_reservas.model.DTO.MesaCreatDto;
+import com.gabriel.Sistema_de_reservas.model.DTO.MesaDto;
 import com.gabriel.Sistema_de_reservas.model.DTO.MesaReturnDto;
 import com.gabriel.Sistema_de_reservas.service.MesaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +20,14 @@ public class MesaController {
     @GetMapping
     public ResponseEntity<List<MesaReturnDto>> listarMesas(){
         return ResponseEntity.ok().body(mesaService.listarMesas());
+    }
+
+    @PostMapping
+    public ResponseEntity<?> criarMesa(@RequestBody MesaCreatDto mesadto){
+        try{
+            return ResponseEntity.ok().body(mesaService.criarMesa(mesadto));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 }

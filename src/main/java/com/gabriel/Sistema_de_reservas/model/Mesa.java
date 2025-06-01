@@ -1,5 +1,6 @@
 package com.gabriel.Sistema_de_reservas.model;
 
+import com.gabriel.Sistema_de_reservas.model.DTO.MesaCreatDto;
 import com.gabriel.Sistema_de_reservas.model.Enums.StatusMesa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,4 +22,10 @@ public class Mesa {
     private String nome;
     private int capacidade;
     private StatusMesa status;
+
+    public Mesa(MesaCreatDto mesa){
+        this.nome = mesa.nome();
+        this.capacidade = mesa.capacidade();
+        this.status = mesa.status();
+    }
 }
