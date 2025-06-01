@@ -15,9 +15,9 @@ import java.util.List;
 public class MesaService {
     private final MesaRepository mesaRepository;
 
-    public List<MesaReturnDto> listarMesas(){
+    public List<MesaDto> listarMesas(){
         List<Mesa> mesas = mesaRepository.findAll();
-        return mesas.stream().map(MesaReturnDto::new).toList();
+        return mesas.stream().map(MesaDto::new).toList();
     }
 
     public MesaDto criarMesa(MesaCreatDto mesa) throws Exception{

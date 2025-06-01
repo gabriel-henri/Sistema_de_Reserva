@@ -18,14 +18,14 @@ public class MesaController {
     private final MesaService mesaService;
 
     @GetMapping
-    public ResponseEntity<List<MesaReturnDto>> listarMesas(){
+    public ResponseEntity<List<MesaDto>> listarMesas(){
         return ResponseEntity.ok().body(mesaService.listarMesas());
     }
 
     @PostMapping
     public ResponseEntity<?> criarMesa(@RequestBody MesaCreatDto mesadto){
         try{
-            return ResponseEntity.ok().body(mesaService.criarMesa(mesadto));
+            return ResponseEntity.status(HttpStatus.CREATED).body(mesaService.criarMesa(mesadto));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
