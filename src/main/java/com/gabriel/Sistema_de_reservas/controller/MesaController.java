@@ -2,7 +2,6 @@ package com.gabriel.Sistema_de_reservas.controller;
 
 import com.gabriel.Sistema_de_reservas.model.DTO.MesaCreatDto;
 import com.gabriel.Sistema_de_reservas.model.DTO.MesaDto;
-import com.gabriel.Sistema_de_reservas.model.DTO.MesaReturnDto;
 import com.gabriel.Sistema_de_reservas.service.MesaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,6 +27,16 @@ public class MesaController {
             return ResponseEntity.status(HttpStatus.CREATED).body(mesaService.criarMesa(mesadto));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> alterarMesa(@PathVariable Long id, @RequestBody MesaCreatDto mesa) {
+        try {
+            mesaService.alterarMesa(id, mesa);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
         }
     }
 }

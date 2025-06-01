@@ -2,7 +2,6 @@ package com.gabriel.Sistema_de_reservas.service;
 
 import com.gabriel.Sistema_de_reservas.model.DTO.MesaCreatDto;
 import com.gabriel.Sistema_de_reservas.model.DTO.MesaDto;
-import com.gabriel.Sistema_de_reservas.model.DTO.MesaReturnDto;
 import com.gabriel.Sistema_de_reservas.model.Mesa;
 import com.gabriel.Sistema_de_reservas.repository.MesaRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +25,15 @@ public class MesaService {
         }
         Mesa mesa1 = new Mesa(mesa);
         return new MesaDto(mesaRepository.save(mesa1));
+    }
+
+    public void alterarMesa(Long id, MesaCreatDto mesadto) throws Exception{
+        if(mesaRepository.findById(id).isPresent()){
+            Mesa mesa = new Mesa(mesadto);
+            mesa.setId(id);
+            mesaRepository.save(mesa);
+        }else {
+            throw new Exception("Mesa não encontrada");
+        }
     }
 }
